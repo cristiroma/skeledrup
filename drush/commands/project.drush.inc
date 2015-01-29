@@ -2,6 +2,10 @@
 
 function project_drush_command() {
 	return array(
+		'project-setup' => array(
+			'bootstrap' => DRUSH_BOOTSTRAP_NONE,
+			'description' => 'Validate configuration, download & install Drupal core - use to start a new project',
+		),
 		'project-install' => array(
 			'bootstrap' => DRUSH_BOOTSTRAP_NONE,
 			'description' => 'Install a clean project instance from scratch',
@@ -15,6 +19,19 @@ function project_drush_command() {
 			'description' => 'Use when cloning production enviroment to local devel machine. Disable production configuration & enable development specific items',
 		),
 	);
+}
+
+function drush_project_setup() {
+	$basedir = dirname(__FILE__) . '/../..';
+	if (!file_exists($basedir . '/docroot/index.php')) {
+		global $project_config;
+		$core = $project_config['core'];
+		$version = 'drupal';
+		if (!empty($core)) {
+			$version .= '-' . $core;
+		}
+		drush_invoke_process('@self', 'dl', array($version), array('drupal-project-rename' => 'docroot'));
+	}
 }
 
 function drush_project_install() {

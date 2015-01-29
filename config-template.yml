@@ -1,5 +1,7 @@
 project:  skeledrup
 
+core: 7.x
+
 db:
   host: localhost
   username : root
