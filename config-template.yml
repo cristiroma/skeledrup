@@ -26,7 +26,7 @@ users:
     pass: secret
     mail: john.doe@mailinator.com
 
-uri: http://skeledrup.localhost:8080
+uri: http://drupal.local.website:8080
 
 variables:
   site_mail               : site.mail@mailinator.com
@@ -68,3 +68,33 @@ devify:
   enable-modules:  [devel]
   delete-variables: []
   reset-variables: []
+
+aliases:
+  local:
+      uri: http://drupal.local.website:8080
+      root: /path/to/drupal/docroot
+      remote-host: localhost
+      remote-user: account
+
+  dev:
+    uri: http://drupal.dev.website:8080
+    root: /path/to/drupal/docroot
+    remote-host: drupal.dev.website
+    remote-user: account
+
+  staging:
+      uri: http://drupal.staging.website:8080
+      root: /path/to/drupal/docroot
+      remote-host: drupal.staging.website
+      remote-user: account
+
+  prod:
+      uri: http://drupal.prod.website:8080
+      root: /path/to/drupal/docroot
+      remote-host: drupal.prod.website
+      remote-user: account
+      command-specific:
+        sql-sync:
+          simulate: 1
+        rsync:
+          simulate: 1
