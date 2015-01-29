@@ -1,0 +1,64 @@
+project:  skeledrup
+
+db:
+  host: localhost
+  username : root
+  password : root
+  port: 3306
+  database : skeledrup
+  root_username: root
+  root_password: root
+
+users:
+  admin:
+    user: admin
+    pass: password
+    mail: cristian.romanescu@eaudeweb.ro
+
+  test:
+    user: john
+    pass: secret
+    mail: john.doe@mailinator.com
+
+uri: http://skeledrup.localhost:8080
+
+variables:
+  site_mail               : site.mail@mailinator.com
+  theme_default           : your_theme
+  date_first_day          : 1
+  site_default_country    : CH
+  date_default_timezone   : UTC
+  configurable_timezones  : 0
+  user_default_timezone   : 0
+  recaptcha_public        : public_key
+  recaptcha_private       : private_key
+  jquery_update_compression_type      : min
+  jquery_update_jquery_admin_version  :
+  jquery_update_jquery_cdn            : none
+  jquery_update_jquery_version        : 1.9
+
+solr_server:
+  name              : Apache Solr server
+  enabled           : 1
+  description       :
+  scheme            : http
+  host              : 127.0.0.1
+  port              : 8080
+  path              : /solr/core
+  http_user         :
+  http_password     :
+  excerpt           : 1
+  retrieve_data     : 1
+  highlight_data    : 1
+  skip_schema_check : null
+  solr_version      :
+  http_method       : AUTO
+  apachesolr_read_only      : null
+  apachesolr_direct_commit  : 1
+  apachesolr_soft_commit    : 1
+
+devify:
+  disable-modules: [update]
+  enable-modules:  [devel]
+  delete-variables: []
+  reset-variables: []

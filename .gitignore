@@ -1,0 +1,15 @@
+# Project specific
+config.yml
+
+# Drupal specific
+docroot/sites/default/files
+docroot/sites/*/files
+docroot/sites/*/private
+
+# Other files
+*.log
+*.sql
+*.sqlite
+
+# IDE specific
+.idea
