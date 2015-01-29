@@ -36,6 +36,19 @@ function drush_project_setup() {
 
 function drush_project_install() {
 	global $project_config;
+
+	$profile_override = !empty($project_config['profile']['override']);
+	if ($profile_override) {
+		$root = realpath(dirname(__FILE__) . '/../../');
+		$profile = $project_config['profile']['profile'];
+		$src = $root . '/etc/profiles/' . $profile;
+		$dest = $root . '/docroot/profiles/standard';
+		if( is_dir($src) ) {
+			rrmdir($dest);
+			rcopy($root . '/etc/profiles/' . $profile, $root . '/docroot/profiles/standard');
+		}
+	}
+
 	$db = $project_config['db'];
 	$admin = $project_config['users']['admin'];
 	$variables = $project_config['variables'];

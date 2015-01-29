@@ -2,6 +2,10 @@ project:  skeledrup
 
 core: 7.x
 
+profile:
+  profile: standard
+  override: true
+
 db:
   host: localhost
   username : root
