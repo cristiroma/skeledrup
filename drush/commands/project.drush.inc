@@ -38,13 +38,21 @@ function drush_project() {
   }
 }
 
+
+function drush_project_setup() {
+  // Run drush make to make the Drupal instance
+  $profile = 'standard';
+  $root = realpath(dirname(__FILE__) . '/../../');
+  drush_invoke_process('@self', 'make', array("$root/etc/profiles/$profile.make", 'docroot'));
+}
+
 function drush_project_install() {
   global $project_config;
-
+  $root = realpath(dirname(__FILE__) . '/../../');
+  $profile = 'standard';
   $profile_override = !empty($project_config['profile']['override']);
+
   if ($profile_override) {
-    $root = realpath(dirname(__FILE__) . '/../../');
-    $profile = $project_config['profile']['profile'];
     $src = $root . '/etc/profiles/' . $profile;
     $dest = $root . '/docroot/profiles/standard';
     if (is_dir($src)) {
@@ -53,6 +61,7 @@ function drush_project_install() {
     }
   }
 
+  // Run site-install
   $db = $project_config['db'];
   $admin = $project_config['users']['admin'];
   $variables = $project_config['variables'];
