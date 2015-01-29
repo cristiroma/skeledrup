@@ -22,6 +22,10 @@ function project_drush_command() {
       'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
       'description' => 'Use when cloning production enviroment to local devel machine. Disable production configuration & enable development specific items',
     ),
+    'project-clean' => array(
+      'bootstrap' => DRUSH_BOOTSTRAP_NONE,
+      'description' => 'Deletes all files on disk',
+    ),
   );
 }
 
@@ -137,4 +141,16 @@ function drush_project_devify() {
   // @see sql_drush_sql_sync_sanitize() to add your sanitize queries.
   drush_sql_sanitize();
   drush_log(dt('Devified!'), 'success');
+}
+
+function drush_project_clean() {
+  $root = realpath(dirname(__FILE__) . '/../../');
+  $docroot = "$root/docroot";
+
+  $default = "$docroot/sites/default";
+  $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($default));
+  foreach($iterator as $item) {
+    chmod($item, 0777);
+  }
+  rrmdir($docroot);
 }
