@@ -2,6 +2,10 @@
 
 function project_drush_command() {
   return array(
+    'project' => array(
+      'bootstrap' => DRUSH_BOOTSTRAP_NONE,
+      'description' => 'Show how to use drush commands to manage the project'
+    ),
     'project-setup' => array(
       'bootstrap' => DRUSH_BOOTSTRAP_NONE,
       'description' => 'Validate configuration, download & install Drupal core - use to start a new project',
@@ -21,16 +25,12 @@ function project_drush_command() {
   );
 }
 
-function drush_project_setup() {
-  $basedir = dirname(__FILE__) . '/../..';
-  if (!file_exists($basedir . '/docroot/index.php')) {
-    global $project_config;
-    $core = $project_config['core'];
-    $version = 'drupal';
-    if (!empty($core)) {
-      $version .= '-' . $core;
-    }
-    drush_invoke_process('@self', 'dl', array($version), array('drupal-project-rename' => 'docroot'));
+function drush_project() {
+  $commands = project_drush_command();
+  unset($commands['project']);
+  echo "Project commands:\n";
+  foreach($commands as $k => $v) {
+    echo " * $k: " . $v['description'] . "\n";
   }
 }
 
