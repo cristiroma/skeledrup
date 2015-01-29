@@ -105,6 +105,34 @@ function drush_project_devify() {
 		variable_set($key, $value);
 	}
 
+	// Devify Solr servers
+	if (!empty($project_config['solr_servers']) && module_exists('search_api_solr')) {
+		foreach ($project_config['solr_servers'] as $machine_name => $cfg) {
+			if ($server = search_api_server_load($machine_name)) {
+				$server->name = $cfg['name'];
+				$server->enabled = $cfg['enabled'];
+				$server->description = $cfg['description'];
+				$server->options = array(
+					'scheme' => $cfg['scheme'],
+					'host' => $cfg['host'],
+					'port' => $cfg['port'],
+					'path' => $cfg['path'],
+					'http' => array(
+						'http_user' => $cfg['http_user'],
+						'http_pass' => $cfg['http_pass'],
+					),
+					'excerpt' => $cfg['excerpt'],
+					'retrieve_data' => $cfg['retrieve_data'],
+					'highlight_data' => $cfg['highlight_data'],
+					'skip_schema_check' => $cfg['skip_schema_check'],
+					'solr_version' => $cfg['solr_version'],
+					'http_method' => $cfg['http_method'],
+				);
+				$server->save();
+			}
+		}
+	}
+
 	// Sanitize database.
 	// @see sql_drush_sql_sync_sanitize() to add your sanitize queries.
 	drush_sql_sanitize();

@@ -43,25 +43,26 @@ variables:
   jquery_update_jquery_cdn            : none
   jquery_update_jquery_version        : 1.9
 
-solr_server:
-  name              : Apache Solr server
-  enabled           : 1
-  description       :
-  scheme            : http
-  host              : 127.0.0.1
-  port              : 8080
-  path              : /solr/core
-  http_user         :
-  http_password     :
-  excerpt           : 1
-  retrieve_data     : 1
-  highlight_data    : 1
-  skip_schema_check : null
-  solr_version      :
-  http_method       : AUTO
-  apachesolr_read_only      : null
-  apachesolr_direct_commit  : 1
-  apachesolr_soft_commit    : 1
+solr_servers:
+  solr_server:
+    name              : Apache Solr server
+    enabled           : 1
+    description       :
+    scheme            : http
+    host              : 127.0.0.1
+    port              : 8080
+    path              : /solr/core
+    http_user         :
+    http_password     :
+    excerpt           :
+    retrieve_data     :
+    highlight_data    :
+    skip_schema_check :
+    solr_version      :
+    http_method       : AUTO
+    apachesolr_read_only      : null
+    apachesolr_direct_commit  : 0
+    apachesolr_soft_commit    : 1
 
 devify:
   disable-modules: [update]
