@@ -8,7 +8,7 @@ if (!function_exists('yaml_parse')) {
 global $project_config;
 
 $project_config = array();
-$config_yml = dirname(__FILE__) . '/../config.yml';
+$config_yml = realpath(dirname(__FILE__) . '/../etc/project.yml');
 if (file_exists($config_yml)) {
   $config = yaml_parse(file_get_contents($config_yml));
   $project_config += $config;

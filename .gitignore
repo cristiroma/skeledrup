@@ -1,5 +1,5 @@
 # Project specific
-config.yml
+etc/config.yml
 
 # Drupal specific
 docroot/sites/default/files
