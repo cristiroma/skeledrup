@@ -41,9 +41,8 @@ function drush_project() {
 
 function drush_project_setup() {
   // Run drush make to make the Drupal instance
-  $profile = 'standard';
   $root = realpath(dirname(__FILE__) . '/../../');
-  drush_invoke_process('@self', 'make', array("$root/etc/profiles/$profile.make", 'docroot'));
+  drush_invoke_process('@self', 'make', array("$root/etc/project.make", 'docroot'));
 }
 
 function drush_project_install() {

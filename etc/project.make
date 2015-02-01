@@ -9,35 +9,35 @@ core = 7.34
 projects[drupal][type] = core
 
 ; Very common modules used in almost all projects
-projects[ctools][subdir] = contrib
-projects[date][subdir] = contrib
-projects[entity][subdir] = contrib
-projects[entityreference][subdir] = contrib
-projects[features][subdir] = contrib
-projects[ftools][subdir] = contrib
-projects[wysiwyg][subdir] = contrib
-projects[jquery_update][subdir] = contrib
-projects[libraries][subdir] = contrib
-projects[link][subdir] = contrib
-projects[pathauto][subdir] = contrib
-projects[strongarm][subdir] = contrib
-projects[taxonomy_access_fix][subdir] = contrib
-projects[token][subdir] = contrib
-projects[uuid][subdir] = contrib
-projects[variable][subdir] = contrib
-projects[views][subdir] = contrib
-projects[wysiwyg][subdir] = contrib
+; projects[ctools][subdir] = contrib
+; projects[date][subdir] = contrib
+; projects[entity][subdir] = contrib
+; projects[entityreference][subdir] = contrib
+; projects[features][subdir] = contrib
+; projects[ftools][subdir] = contrib
+; projects[wysiwyg][subdir] = contrib
+; projects[jquery_update][subdir] = contrib
+; projects[libraries][subdir] = contrib
+; projects[link][subdir] = contrib
+; projects[pathauto][subdir] = contrib
+; projects[strongarm][subdir] = contrib
+; projects[taxonomy_access_fix][subdir] = contrib
+; projects[token][subdir] = contrib
+; projects[uuid][subdir] = contrib
+; projects[variable][subdir] = contrib
+; projects[views][subdir] = contrib
+; projects[wysiwyg][subdir] = contrib
 
 ; Multilingual
-projects[i18n][subdir] = contrib
-projects[entity_translation][subdir] = contrib
-projects[title][subdir] = contrib
+; projects[i18n][subdir] = contrib
+; projects[entity_translation][subdir] = contrib
+; projects[title][subdir] = contrib
 ; projects[lang_dropdown][subdir] = contrib
 ; projects[languagefield][subdir] = contrib
 
 ; Search modules
 ; dependencies[] = facetapi
-projects[search_api][subdir] = contrib
+; projects[search_api][subdir] = contrib
 ; dependencies[] = search_api_attachments
 ; dependencies[] = search_api_et
 ; dependencies[] = search_api_et_solr
@@ -45,7 +45,7 @@ projects[search_api][subdir] = contrib
 ; dependencies[] = search_autocomplete
 
 ; Common modules
-projects[chosen][subdir] = contrib
+; projects[chosen][subdir] = contrib
 ; dependencies[] = entity_collection
 ; dependencies[] = htmlmail
 ; dependencies[] = mailsystem
@@ -57,8 +57,8 @@ projects[chosen][subdir] = contrib
 ; dependencies[] = views_slideshow
 
 ; Development modules
-projects[devel][subdir] = contrib
-projects[reroute_email][subdir] = contrib
+; projects[devel][subdir] = contrib
+; projects[reroute_email][subdir] = contrib
 
 ; Rare modules
 ; dependencies[] = context
