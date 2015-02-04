@@ -1,21 +1,27 @@
 <?php
 
-if (!function_exists('yaml_parse')) {
-	die('Please install the Yaml PHP extension');
-}
+use Drush\Make\Parser\ParserYaml;
 
 // Load project configuration file and set it as global variable $project_config
 global $project_config;
+$project_config = sk_setup_aliases();
 
-$project_config = array();
-$config_yml = realpath(dirname(__FILE__) . '/../etc/project.yml');
-if (file_exists($config_yml)) {
-  $config = yaml_parse(file_get_contents($config_yml));
-  $project_config += $config;
+function sk_setup_aliases() {
+  $ret = array();
+  $config_yml = realpath(dirname(__FILE__) . '/../etc/project.yml');
+  if (file_exists($config_yml)) {
+    $config = ParserYaml::parse(file_get_contents($config_yml));
+    $ret = $config;
+  }
+  $config_yml = dirname(__FILE__) . '/../etc/local.yml';
+  if (file_exists($config_yml)) {
+    $config = ParserYaml::parse(file_get_contents($config_yml));
+    $ret = array_replace_recursive($ret, $config);
+  }
+  return $ret;
 }
 
 // Utility functions
-
 function rrmdir($dir) {
   if (is_dir($dir)) {
     $objects = scandir($dir);

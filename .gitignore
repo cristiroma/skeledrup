@@ -1,6 +1,6 @@
 # Project specific
 docroot/
-etc/config.yml
+etc/local.yml
 etc/apache.conf
 
 # Drupal specific
