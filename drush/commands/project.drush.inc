@@ -40,9 +40,16 @@ function drush_project() {
 
 
 function drush_project_setup() {
-  // Run drush make to make the Drupal instance
-  $root = realpath(dirname(__FILE__) . '/../../');
-  drush_invoke_process('@self', 'make', array("$root/etc/project.make", 'docroot'));
+  global $project_config;
+  $local = $project_config['aliases']['local'];
+  $makefile = !empty($local['makefile']) ? $local['makefile'] : '';
+  if (!empty($local['makefile'])) {
+    drush_invoke_process('@self', 'make', array($makefile, 'docroot'));
+  }
+  else {
+    // Run drush make to make the Drupal instance
+    drush_invoke_process('@self', 'dl', array('drupal', '--drupal-project-rename=docroot'));
+  }
 }
 
 function drush_project_install() {
