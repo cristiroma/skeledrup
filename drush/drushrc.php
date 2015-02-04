@@ -22,12 +22,17 @@ function sk_setup_aliases() {
 }
 
 // Utility functions
-function rrmdir($dir) {
+function sk_rrmdir($dir) {
   if (is_dir($dir)) {
     $objects = scandir($dir);
     foreach ($objects as $object) {
       if ($object != "." && $object != "..") {
-        if (filetype($dir."/".$object) == "dir") rrmdir($dir."/".$object); else unlink($dir."/".$object);
+        if (filetype($dir."/".$object) == "dir") {
+          sk_rrmdir($dir."/".$object);
+        }
+        else {
+          unlink($dir."/".$object);
+        }
       }
     }
     reset($objects);
@@ -35,13 +40,13 @@ function rrmdir($dir) {
   }
 }
 
-function rcopy($src, $dst) {
+function sk_rcopy($src, $dst) {
   $dir = opendir($src);
   @mkdir($dst);
   while(false !== ( $file = readdir($dir)) ) {
     if (( $file != '.' ) && ( $file != '..' )) {
       if ( is_dir($src . '/' . $file) ) {
-        rcopy($src . '/' . $file,$dst . '/' . $file);
+        sk_rcopy($src . '/' . $file,$dst . '/' . $file);
       }
       else {
         copy($src . '/' . $file,$dst . '/' . $file);

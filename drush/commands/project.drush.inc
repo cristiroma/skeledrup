@@ -55,8 +55,8 @@ function drush_project_install() {
     $src = $root . '/etc/profiles/' . $profile;
     $dest = $root . '/docroot/profiles/standard';
     if (is_dir($src)) {
-      rrmdir($dest);
-      rcopy($root . '/etc/profiles/' . $profile, $root . '/docroot/profiles/standard');
+      sk_rrmdir($dest);
+      sk_rcopy($root . '/etc/profiles/' . $profile, $root . '/docroot/profiles/standard');
     }
   }
 
@@ -160,5 +160,5 @@ function drush_project_clean() {
   foreach($iterator as $item) {
     chmod($item, 0777);
   }
-  rrmdir($docroot);
+  sk_rrmdir($docroot);
 }
