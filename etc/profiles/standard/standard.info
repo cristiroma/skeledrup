@@ -29,34 +29,34 @@ dependencies[] = rdf
 
 ; Very common modules used in almost all projects
 dependencies[] = ctools
-dependencies[] = date
-dependencies[] = entity
-dependencies[] = entityreference
-dependencies[] = features
-dependencies[] = ftools
-dependencies[] = wysiwyg
-dependencies[] = jquery_update
-dependencies[] = libraries
-dependencies[] = link
-dependencies[] = pathauto
-dependencies[] = strongarm
-dependencies[] = taxonomy_access_fix
-dependencies[] = token
-dependencies[] = uuid
-dependencies[] = variable
+; dependencies[] = date
+; dependencies[] = entity
+; dependencies[] = entityreference
+; dependencies[] = features
+; dependencies[] = ftools
+; dependencies[] = wysiwyg
+; dependencies[] = jquery_update
+; dependencies[] = libraries
+; dependencies[] = link
+; dependencies[] = pathauto
+; dependencies[] = strongarm
+; dependencies[] = taxonomy_access_fix
+; dependencies[] = token
+; dependencies[] = uuid
+; dependencies[] = variable
 dependencies[] = views
-dependencies[] = wysiwyg
+; dependencies[] = wysiwyg
 
 ; Multilingual
-dependencies[] = i18n
-dependencies[] = entity_translation
-dependencies[] = title
+; dependencies[] = i18n
+; dependencies[] = entity_translation
+; dependencies[] = title
 ; dependencies[] = lang_dropdown
 ; dependencies[] = languagefield
 
 ; Search modules
 ; dependencies[] = facetapi
-dependencies[] = search_api
+; dependencies[] = search_api
 ; dependencies[] = search_api_attachments
 ; dependencies[] = search_api_et
 ; dependencies[] = search_api_et_solr
@@ -64,7 +64,7 @@ dependencies[] = search_api
 ; dependencies[] = search_autocomplete
 
 ; Common modules
-dependencies[] = chosen
+; dependencies[] = chosen
 ; dependencies[] = entity_collection
 ; dependencies[] = htmlmail
 ; dependencies[] = mailsystem
@@ -77,7 +77,7 @@ dependencies[] = chosen
 
 ; Development modules
 dependencies[] = devel
-dependencies[] = reroute_email
+; dependencies[] = reroute_email
 
 ; Rare modules
 ; dependencies[] = context

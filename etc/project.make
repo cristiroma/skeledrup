@@ -9,7 +9,7 @@ core = 7.34
 projects[drupal][type] = core
 
 ; Very common modules used in almost all projects
-; projects[ctools][subdir] = contrib
+projects[ctools][subdir] = contrib
 ; projects[date][subdir] = contrib
 ; projects[entity][subdir] = contrib
 ; projects[entityreference][subdir] = contrib
@@ -25,7 +25,7 @@ projects[drupal][type] = core
 ; projects[token][subdir] = contrib
 ; projects[uuid][subdir] = contrib
 ; projects[variable][subdir] = contrib
-; projects[views][subdir] = contrib
+projects[views][subdir] = contrib
 ; projects[wysiwyg][subdir] = contrib
 
 ; Multilingual
@@ -57,7 +57,7 @@ projects[drupal][type] = core
 ; dependencies[] = views_slideshow
 
 ; Development modules
-; projects[devel][subdir] = contrib
+projects[devel][subdir] = contrib
 ; projects[reroute_email][subdir] = contrib
 
 ; Rare modules
