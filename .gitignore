@@ -1,5 +1,6 @@
 # Project specific
 etc/config.yml
+etc/apache.conf
 
 # Drupal specific
 docroot/sites/default/files
