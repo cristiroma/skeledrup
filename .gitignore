@@ -1,4 +1,5 @@
 # Project specific
+docroot/
 etc/config.yml
 etc/apache.conf
 
