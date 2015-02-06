@@ -43,7 +43,8 @@ function drush_project_setup() {
   global $project_config;
   $local = $project_config['aliases']['local'];
   $makefile = !empty($local['makefile']) ? $local['makefile'] : '';
-  if (!empty($local['makefile'])) {
+  if (!empty($makefile)) {
+    $makefile = $makefile[0] = '/' ? $makefile : PROJECT_ROOT . '/' . $makefile;
     drush_invoke_process('@self', 'make', array($makefile, 'docroot'));
   }
   else {
