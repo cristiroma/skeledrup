@@ -4,8 +4,9 @@ use Drush\Make\Parser\ParserYaml;
 
 // Load project configuration file and set it as global variable $project_config
 global $project_config;
-$project_config = sk_setup_aliases();
 define('PROJECT_ROOT', realpath(dirname(__FILE__) . '/..'));
+$project_config = sk_setup_aliases();
+
 
 function sk_setup_aliases() {
   $ret = array();
