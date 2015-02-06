@@ -18,6 +18,10 @@ function project_drush_command() {
       'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
       'description' => 'Update instance: database updates, revert features, clear caches',
     ),
+    'project-reset-variables' => array(
+      'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
+      'description' => 'Reset variables with those from the project configuration file',
+    ),
     'project-devify' => array(
       'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
       'description' => 'Use when cloning production enviroment to local devel machine. Disable production configuration & enable development specific items',
@@ -168,5 +172,15 @@ function drush_project_clean() {
   $docroot = PROJECT_ROOT . '/docroot';
   if (is_dir($docroot)) {
     sk_rrmdir($docroot);
+  }
+}
+
+function drush_project_reset_variables() {
+  global $project_config;
+  $x = drush_sitealias_bootstrapped_site_name();
+  var_dump($x);
+  $variables = $project_config['aliases']['local']['variables'];
+  foreach ($variables as $k => $v) {
+    variable_set($k, $v);
   }
 }
