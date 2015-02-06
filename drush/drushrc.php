@@ -5,17 +5,18 @@ use Drush\Make\Parser\ParserYaml;
 // Load project configuration file and set it as global variable $project_config
 global $project_config;
 $project_config = sk_setup_aliases();
+define('PROJECT_ROOT', realpath(dirname(__FILE__) . '/..'));
 
 function sk_setup_aliases() {
   $ret = array();
-  $config_yml = realpath(dirname(__FILE__) . '/../etc/project.yml');
+  $config_yml = realpath(PROJECT_ROOT . '/etc/project.yml');
   if (file_exists($config_yml)) {
     $config = ParserYaml::parse(file_get_contents($config_yml));
     $ret = $config;
   }
-  $config_yml = dirname(__FILE__) . '/../etc/local.yml';
-  if (file_exists($config_yml)) {
-    $config = ParserYaml::parse(file_get_contents($config_yml));
+  $local_yml = PROJECT_ROOT . '/etc/local.yml';
+  if (file_exists($local_yml)) {
+    $config = ParserYaml::parse(file_get_contents($local_yml));
     $ret = array_replace_recursive($ret, $config);
   }
   return $ret;

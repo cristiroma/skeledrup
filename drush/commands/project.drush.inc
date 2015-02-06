@@ -57,13 +57,12 @@ function drush_project_install() {
 
   $makefile = isset($project_config['aliases']['local']['makefile']) ? $project_config['aliases']['local']['makefile'] : FALSE;
   if ($makefile) {
-    $root = realpath(dirname(__FILE__) . '/../../');
     $profile = 'standard';
-    $src = $root . '/etc/profiles/' . $profile;
-    $dest = $root . '/docroot/profiles/standard';
+    $src = PROJECT_ROOT . '/etc/profiles/' . $profile;
+    $dest = PROJECT_ROOT . '/docroot/profiles/standard';
     if (is_dir($src)) {
       sk_rrmdir($dest);
-      sk_rcopy($root . '/etc/profiles/' . $profile, $root . '/docroot/profiles/standard');
+      sk_rcopy(PROJECT_ROOT . '/etc/profiles/' . $profile, PROJECT_ROOT . '/docroot/profiles/standard');
     }
   }
   $local = $project_config['aliases']['local'];
@@ -158,13 +157,15 @@ function drush_project_devify() {
 }
 
 function drush_project_clean() {
-  $root = realpath(dirname(__FILE__) . '/../../');
-  $docroot = "$root/docroot";
-
-  $default = "$docroot/sites/default";
-  $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($default));
-  foreach($iterator as $item) {
-    chmod($item, 0777);
+  $default = PROJECT_ROOT . '/docroot/sites/default';
+  if (is_dir($default)) {
+    $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($default));
+    foreach ($iterator as $item) {
+      chmod($item, 0777);
+    }
   }
-  sk_rrmdir($docroot);
+  $docroot = PROJECT_ROOT . '/docroot';
+  if (is_dir($docroot)) {
+    sk_rrmdir($docroot);
+  }
 }
