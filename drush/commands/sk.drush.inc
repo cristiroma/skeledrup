@@ -21,6 +21,9 @@ function sk_drush_command() {
     'sk-reset-variables' => array(
       'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
       'description' => 'Reset variables with those from the project configuration file',
+      'options' => array(
+        'verbose' => 'Show the value of each variable set'
+      )
     ),
     'sk-devify' => array(
       'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
@@ -177,10 +180,11 @@ function drush_sk_clean() {
 
 function drush_sk_reset_variables() {
   global $project_config;
-  $x = drush_sitealias_bootstrapped_site_name();
-  var_dump($x);
   $variables = $project_config['aliases']['local']['variables'];
   foreach ($variables as $k => $v) {
+    if (drush_get_option('verbose', FALSE)) {
+      drush_log(sprintf('Setting %s = %s', $k, $v));
+    }
     variable_set($k, $v);
   }
 }
