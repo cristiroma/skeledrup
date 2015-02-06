@@ -1,7 +1,7 @@
 # Configure drush site aliases, "local" is mandatory and used to project-make & project-install (contains all settings)
 aliases:
   local:
-    # Put here the project.make or leave empty to use default Drupal's distribution
+    # Put here the path to project.make or leave empty to use default Drupal's distribution
     makefile: /absolute/path/to/repo/etc/project.make
     uri: http://drupal.local.website:8080
     root: /absolute/path/to/drupal/docroot
@@ -33,6 +33,8 @@ aliases:
         mail: john.doe@mailinator.com
 
     variables:
+      # 0-USER_REGISTER_ADMINISTRATORS_ONLY/1-USER_REGISTER_VISITORS/2-USER_REGISTER_VISITORS_ADMINISTRATIVE_APPROVAL
+      user_register           : 0 # By default disable user self-registration
       site_mail               : site.mail@mailinator.com
       theme_default           : your_theme
       date_first_day          : 1

@@ -54,11 +54,11 @@ function drush_project_setup() {
 
 function drush_project_install() {
   global $project_config;
-  $root = realpath(dirname(__FILE__) . '/../../');
-  $profile = 'standard';
-  $profile_override = !empty($project_config['profile']['override']);
 
-  if ($profile_override) {
+  $makefile = isset($project_config['aliases']['local']['makefile']) ? $project_config['aliases']['local']['makefile'] : FALSE;
+  if ($makefile) {
+    $root = realpath(dirname(__FILE__) . '/../../');
+    $profile = 'standard';
     $src = $root . '/etc/profiles/' . $profile;
     $dest = $root . '/docroot/profiles/standard';
     if (is_dir($src)) {
@@ -66,13 +66,12 @@ function drush_project_install() {
       sk_rcopy($root . '/etc/profiles/' . $profile, $root . '/docroot/profiles/standard');
     }
   }
-
+  $local = $project_config['aliases']['local'];
   // Run site-install
-  $db = $project_config['db'];
-  $admin = $project_config['users']['admin'];
-  $variables = $project_config['variables'];
+  $db = $local['db'];
+  $admin = $local['users']['admin'];
+  $variables = $local['variables'];
   $db_url = sprintf('mysql://%s:%s@%s:%s/%s', $db['username'], $db['password'], $db['host'], $db['port'], $db['database']);
-
   $command_specific = array(
     'db-url' => $db_url,
     'account-mail' => $admin['mail'],
