@@ -11,7 +11,7 @@ function project_drush_command() {
       'description' => 'Validate configuration, download & install Drupal core - use to start a new project',
     ),
     'project-install' => array(
-      'bootstrap' => DRUSH_BOOTSTRAP_NONE,
+      'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_ROOT,
       'description' => 'Install a clean project instance from scratch',
     ),
     'project-update' => array(
