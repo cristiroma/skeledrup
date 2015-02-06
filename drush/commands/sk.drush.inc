@@ -1,41 +1,41 @@
 <?php
 
-function project_drush_command() {
+function sk_drush_command() {
   return array(
-    'project' => array(
+    'sk' => array(
       'bootstrap' => DRUSH_BOOTSTRAP_NONE,
       'description' => 'Show how to use drush commands to manage the project'
     ),
-    'project-setup' => array(
+    'sk-setup' => array(
       'bootstrap' => DRUSH_BOOTSTRAP_NONE,
       'description' => 'Validate configuration, download & install Drupal core - use to start a new project',
     ),
-    'project-install' => array(
+    'sk-install' => array(
       'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_ROOT,
       'description' => 'Install a clean project instance from scratch',
     ),
-    'project-update' => array(
+    'sk-update' => array(
       'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
       'description' => 'Update instance: database updates, revert features, clear caches',
     ),
-    'project-reset-variables' => array(
+    'sk-reset-variables' => array(
       'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
       'description' => 'Reset variables with those from the project configuration file',
     ),
-    'project-devify' => array(
+    'sk-devify' => array(
       'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
       'description' => 'Use when cloning production enviroment to local devel machine. Disable production configuration & enable development specific items',
     ),
-    'project-clean' => array(
+    'sk-clean' => array(
       'bootstrap' => DRUSH_BOOTSTRAP_NONE,
       'description' => 'Deletes all files on disk',
     ),
   );
 }
 
-function drush_project() {
-  $commands = project_drush_command();
-  unset($commands['project']);
+function drush_sk() {
+  $commands = sk_drush_command();
+  unset($commands['sk']);
   echo "Project commands:\n";
   foreach($commands as $k => $v) {
     echo " * $k: " . $v['description'] . "\n";
@@ -43,7 +43,7 @@ function drush_project() {
 }
 
 
-function drush_project_setup() {
+function drush_sk_setup() {
   global $project_config;
   $local = $project_config['aliases']['local'];
   $makefile = !empty($local['makefile']) ? $local['makefile'] : '';
@@ -57,7 +57,7 @@ function drush_project_setup() {
   }
 }
 
-function drush_project_install() {
+function drush_sk_install() {
   global $project_config;
 
   $makefile = isset($project_config['aliases']['local']['makefile']) ? $project_config['aliases']['local']['makefile'] : FALSE;
@@ -88,7 +88,7 @@ function drush_project_install() {
   drush_invoke_process('@self', 'site-install', array(), $command_specific);
 }
 
-function drush_project_update() {
+function drush_sk_update() {
   drush_invoke('updatedb');
   if (module_exists('features')) {
     drush_invoke_process('@self', 'features-revert-all', array(), array(
@@ -100,7 +100,7 @@ function drush_project_update() {
   drush_log(dt('Update command finished'), 'success');
 }
 
-function drush_project_devify() {
+function drush_sk_devify() {
   global $project_config;
   $config = $project_config['devify'];
 
@@ -161,7 +161,7 @@ function drush_project_devify() {
   drush_log(dt('Devified!'), 'success');
 }
 
-function drush_project_clean() {
+function drush_sk_clean() {
   $default = PROJECT_ROOT . '/docroot/sites/default';
   if (is_dir($default)) {
     $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($default));
@@ -175,7 +175,7 @@ function drush_project_clean() {
   }
 }
 
-function drush_project_reset_variables() {
+function drush_sk_reset_variables() {
   global $project_config;
   $x = drush_sitealias_bootstrapped_site_name();
   var_dump($x);
