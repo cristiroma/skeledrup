@@ -27,15 +27,30 @@ aliases:
         pass: password
         mail: cristian.romanescu@eaudeweb.ro
 
-      test:
-        user: john
-        pass: secret
-        mail: john.doe@mailinator.com
+#      test:
+#        user: john
+#        pass: secret
+#        mail: john.doe@mailinator.com
 
     variables:
+      site_mail               : site.mail@mailinator.com
+      site_name               : My newest Drupal project
+      site_slogan             : Default site slogan
+      site_frontpage          : node
+      default_nodes_main      : 10
+      site_403                :
+      site_404                :
+      # File related settings
+      file_public_path        : sites/default/files
+      file_private_path       :
+      file_temporary_path     :
+      file_default_scheme     : public
+
       # 0-USER_REGISTER_ADMINISTRATORS_ONLY/1-USER_REGISTER_VISITORS/2-USER_REGISTER_VISITORS_ADMINISTRATIVE_APPROVAL
       user_register           : 0 # By default disable user self-registration
-      site_mail               : site.mail@mailinator.com
+      user_cancel_method      :
+      user_pictures           : 0
+      #
       theme_default           : your_theme
       admin_theme             : seven
       date_first_day          : 1
