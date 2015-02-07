@@ -1,9 +1,11 @@
 <?php
 
 function standard_create_blocks() {
+  global $project_config;
+
   // Enable some standard blocks.
   $default_theme = variable_get('theme_default', 'bartik');
-  $admin_theme = 'seven';
+  $admin_theme = standard_get_variable('admin_theme', 'seven');
   $blocks = array(
     array(
       'module' => 'system',
@@ -131,4 +133,11 @@ function standard_create_blocks() {
     $query->values($block);
   }
   $query->execute();
+
+  // Enable the admin theme.
+  db_update('system')
+    ->fields(array('status' => 1))
+    ->condition('type', 'theme')
+    ->condition('name', $admin_theme)
+    ->execute();
 }

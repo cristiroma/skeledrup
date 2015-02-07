@@ -37,6 +37,7 @@ aliases:
       user_register           : 0 # By default disable user self-registration
       site_mail               : site.mail@mailinator.com
       theme_default           : your_theme
+      admin_theme             : seven
       date_first_day          : 1
       site_default_country    : CH
       date_default_timezone   : UTC
