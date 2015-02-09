@@ -105,7 +105,9 @@ function drush_sk_update() {
 
 function drush_sk_devify() {
   global $project_config;
-  $config = $project_config['devify'];
+
+  $local = $project_config['aliases']['local'];
+  $config = $local['devify'];
 
   $modules = array_unique(array_merge($config['disable-modules'], array('update')));
   module_disable($modules);
@@ -131,8 +133,8 @@ function drush_sk_devify() {
   }
 
   // Devify Solr servers
-  if (!empty($project_config['solr_servers']) && module_exists('search_api_solr')) {
-    foreach ($project_config['solr_servers'] as $machine_name => $cfg) {
+  if (!empty($local['solr-servers']) && module_exists('search_api_solr')) {
+    foreach ($local['solr-servers'] as $machine_name => $cfg) {
       if ($server = search_api_server_load($machine_name)) {
         $server->name = $cfg['name'];
         $server->enabled = $cfg['enabled'];
