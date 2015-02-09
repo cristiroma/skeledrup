@@ -38,43 +38,43 @@ projects[views][subdir] = contrib
 ; Search modules
 ; dependencies[] = facetapi
 ; projects[search_api][subdir] = contrib
-; dependencies[] = search_api_attachments
-; dependencies[] = search_api_et
-; dependencies[] = search_api_et_solr
-; dependencies[] = search_api_solr
-; dependencies[] = search_autocomplete
+; projects[search_api_attachments][subdir] = contrib
+; projects[search_api_solr][subdir] = contrib
+; projects[search_api_et][subdir] = contrib
+; projects[search_api_et_solr][subdir] = contrib
+; projects[search_autocomplete][subdir] = contrib
 
 ; Common modules
 ; projects[chosen][subdir] = contrib
-; dependencies[] = entity_collection
-; dependencies[] = htmlmail
-; dependencies[] = mailsystem
-; dependencies[] = image_field_caption
-; dependencies[] = menu_block
-; dependencies[] = migrate
-; dependencies[] = r4032login
-; dependencies[] = rules
-; dependencies[] = views_slideshow
+; projects[entity_collection][subdir] = contrib
+; projects[htmlmail][subdir] = contrib
+; projects[mailsystem][subdir] = contrib
+; projects[image_field_caption][subdir] = contrib
+; projects[menu_block][subdir] = contrib
+; projects[migrate][subdir] = contrib
+; projects[r4032login][subdir] = contrib
+; projects[rules][subdir] = contrib
+; projects[views_slideshow][subdir] = contrib
 
 ; Development modules
 projects[devel][subdir] = contrib
 ; projects[reroute_email][subdir] = contrib
+; projects[diff][subdir] = contrib
 
 ; Rare modules
-; dependencies[] = context
-; dependencies[] = diff
-; dependencies[] = field_group
-; dependencies[] = flickr
-; dependencies[] = on_the_web
-; dependencies[] = linkchecker
-; dependencies[] = pathologic
-; dependencies[] = views_bulk_operations
+; projects[context][subdir] = contrib
+; projects[field_group][subdir] = contrib
+; projects[flickr][subdir] = contrib
+; projects[on_the_web][subdir] = contrib
+; projects[linkchecker][subdir] = contrib
+; projects[pathologic][subdir] = contrib
+; projects[views_bulk_operations][subdir] = contrib
 
 ; Exotic modules
-; dependencies[] = feeds
-; dependencies[] = file_entity
-; dependencies[] = media
-; dependencies[] = tmgmt
-; dependencies[] = workbench
-; dependencies[] = workbench_access
-; dependencies[] = workbench_moderation
+; projects[feeds][subdir] = contrib
+; projects[file_entity][subdir] = contrib
+; projects[media][subdir] = contrib
+; projects[tmgmt][subdir] = contrib
+; projects[workbench][subdir] = contrib
+; projects[workbench_access][subdir] = contrib
+; projects[workbench_moderation][subdir] = contrib
