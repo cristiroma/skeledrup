@@ -17,8 +17,16 @@ function sk_setup_aliases() {
   }
   $local_yml = PROJECT_ROOT . '/etc/local.yml';
   if (file_exists($local_yml)) {
-    $config = ParserYaml::parse(file_get_contents($local_yml));
-    $ret = array_replace_recursive($ret, $config);
+    $local = ParserYaml::parse(file_get_contents($local_yml));
+    $ret = array_replace_recursive($ret, $local);
+    // Check for overrides in specific positions of the arraay
+    // @todo beautify to something ... recursive
+    foreach(array('users', 'variables', 'solr-servers') as $key) {
+      if (!empty($local['aliases']['local'][$key]['override'])) {
+        $ret['aliases']['local'][$key] = $local['aliases']['local'][$key];
+        unset($ret['aliases']['local'][$key]['override']);
+      }
+    }
   }
   return $ret;
 }
