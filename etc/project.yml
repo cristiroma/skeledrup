@@ -25,10 +25,10 @@ aliases:
                 user: admin # Customise "admin" username - defaults to admin
                 pass: password
                 mail: cristian.romanescu@eaudeweb.ro
-            test:
-                user: john
-                pass: secret
-                mail: john.doe@mailinator.com
+#            test:
+#                user: john
+#                pass: secret
+#                mail: john.doe@mailinator.com
 
         variables:
             # override              : true # if TRUE in local.yml will override values defined here
@@ -65,7 +65,7 @@ aliases:
 
         solr-servers:
             # override             : true # if TRUE in local.yml will override values defined here
-            machine-name1:
+            solr_server:
                 name              : Apache Solr server
                 enabled           : 1
                 description       :
