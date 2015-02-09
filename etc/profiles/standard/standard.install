@@ -14,6 +14,7 @@
 function standard_install() {
   require_once 'standard.lib.blocks.inc';
   require_once 'standard.lib.editor.inc';
+  require_once 'standard.lib.search.inc';
 
   // Set global variables
   if ($variables = standard_get_variable()) {
@@ -43,6 +44,9 @@ function standard_install() {
     ->fields(array('uid' => 1, 'rid' => $admin_role->rid))
     ->execute();
 
+  // Configure the search
+  standard_setup_search();
+
   menu_rebuild();
 }
 
@@ -59,6 +63,19 @@ function standard_get_variable($name = NULL, $default = FALSE) {
     if ($name && isset($ret[$name])) {
       $ret = $ret[$name];
     }
+  }
+  return $ret;
+}
+
+/**
+ * @return mixed
+ */
+function standard_get_config($profile = 'local') {
+  global $project_config;
+  $ret = array();
+  if (!empty($project_config['aliases'][$profile])
+      && is_array($project_config['aliases'][$profile])) {
+    $ret = $project_config['aliases'][$profile];
   }
   return $ret;
 }
