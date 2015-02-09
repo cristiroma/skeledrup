@@ -15,6 +15,7 @@ function standard_install() {
   require_once 'standard.lib.blocks.inc';
   require_once 'standard.lib.editor.inc';
   require_once 'standard.lib.search.inc';
+  require_once 'standard.lib.security.inc';
 
   // Set global variables
   if ($variables = standard_get_variable()) {
@@ -46,7 +47,8 @@ function standard_install() {
 
   // Configure the search
   standard_setup_search();
-
+  // Configure users
+  standard_setup_users();
   menu_rebuild();
 }
 

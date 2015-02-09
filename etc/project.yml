@@ -22,13 +22,15 @@ aliases:
         users:
             # override: true # if TRUE in local.yml will override values defined here
             admin: # admin is mandatory, DO NOT DELETE!
-                user: admin # Customise "admin" username - defaults to admin
+                name: admin # Customise "admin" username - defaults to admin
                 pass: password
                 mail: cristian.romanescu@eaudeweb.ro
 #            test:
-#                user: john
+#                name: john
 #                pass: secret
 #                mail: john.doe@mailinator.com
+#                status: 1
+#                timezone: Europe/Bucharest
 
         variables:
             # override              : true # if TRUE in local.yml will override values defined here

@@ -82,7 +82,7 @@ function drush_sk_install() {
   $command_specific = array(
     'db-url' => $db_url,
     'account-mail' => $admin['mail'],
-    'account-name' => $admin['user'],
+    'account-name' => $admin['name'],
     'account-pass' => $admin['pass'],
     'db-su' => $db['root_username'],
     'db-su-pw' => $db['root_password'],
