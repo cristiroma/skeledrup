@@ -159,10 +159,6 @@ function drush_sk_devify() {
       }
     }
   }
-
-  // Sanitize database.
-  // @see sql_drush_sql_sync_sanitize() to add your sanitize queries.
-  drush_sql_sanitize();
   drush_log(dt('Devified!'), 'success');
 }
 
