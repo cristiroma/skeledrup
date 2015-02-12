@@ -27,6 +27,9 @@ dependencies[] = field_ui
 dependencies[] = file
 dependencies[] = rdf
 
+; EdW modules
+; dependencies[] = edw_extras
+
 ; Very common modules used in almost all projects
 dependencies[] = ctools
 ; dependencies[] = date

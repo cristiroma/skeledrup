@@ -8,6 +8,11 @@ core = 7.34
 
 projects[drupal][type] = core
 
+; EdW modules
+; projects[edw_extras][subdir] = edw
+; projects[edw_extras][location] = http://fserver.eaudeweb.ro/fserver
+; projects[edw_extras][type] = module
+
 ; Very common modules used in almost all projects
 projects[ctools][subdir] = contrib
 ; projects[date][subdir] = contrib
