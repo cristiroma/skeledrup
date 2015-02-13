@@ -27,16 +27,25 @@ Please read [tests/readme.md](tests/readme.md) for more information on writing t
 * ``drush sk-reset-variables`` - Reset the instance variables to their values from config Yaml file
 * ``drush sk-clean`` - Remove docroot/ folder
 
-## Other available commands
+## Block related commands
 
 * ``drush block-configure <theme> <module> <delta> [region] [weight]`` - Saves single block configuration (ie move block to a region)
 * ``drush block-disable <theme> <module> <delta>`` - Quickly disable a single block
 * ``drush block-show <theme> <module> <delta>`` - Show the configuration options for one or more blocks
 
+## Solr related commands
+* ``drush solr-config-reset [solr-machine1,solr-machine2]`` - Show the configuration options for one or more blocks
+
 
 # Credits
 
-This project is inspired by [Lullabot's boilerplate](https://github.com/Lullabot/drupal-boilerplate) and _also parts of the code have been copied into this project_.
+Credit to this project goes to:
 
-*Why?* Because I wanted to (incompatible) improvements to boilerplate while using it in our projects here at [Eau de Web](http://www.eaudeweb.ro).
+* [Lullabot's boilerplate](https://github.com/Lullabot/drupal-boilerplate) and _also parts of the code have been copied into this project_.
+* [drush-extras](https://www.drupal.org/project/drush_extras) - Useful extra commands available for drush
+
+We're using it in our projects here @ [Eau de Web](http://www.eaudeweb.ro).
+
+
+*Made in Romania*
 

@@ -24,7 +24,7 @@ function standard_search_add_search_api_solr($machine_name, $cfg) {
       'port' => '8983',
       'path' => '/solr',
       'http_user' => '',
-      'http_password' => '',
+      'http_pass' => '',
       'excerpt' => NULL,
       'retrieve_data' => NULL,
       'highlight_data' => NULL,
