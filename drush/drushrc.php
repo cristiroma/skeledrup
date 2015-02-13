@@ -78,3 +78,12 @@ function sk_rcopy($src, $dst) {
   }
   closedir($dir);
 }
+
+function sk_parse_drush_get_option_array($option) {
+  $ret = array();
+  if ($value = drush_get_option($option)) {
+    $ret = explode(',', $value);
+    $ret = array_map('trim', $ret);
+  }
+  return $ret;
+}
