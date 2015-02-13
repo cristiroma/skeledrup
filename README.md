@@ -15,7 +15,9 @@ This repository is useful for you if you want to a start a new Drupal project. P
 
 Please read [tests/readme.md](tests/readme.md) for more information on writing tests for your project.
 
-# Custom drush commands
+# List of drush commands
+
+## Project related
 
 * ``drush sk`` - overview of these commands
 * ``drush sk-setup`` - validate configuration and prepare the Drupal instance
@@ -24,6 +26,13 @@ Please read [tests/readme.md](tests/readme.md) for more information on writing t
 * ``drush sk-devify`` - configure instance with development environment customisations
 * ``drush sk-reset-variables`` - Reset the instance variables to their values from config Yaml file
 * ``drush sk-clean`` - Remove docroot/ folder
+
+## Other available commands
+
+* ``drush block-configure <theme> <module> <delta> [region] [weight]`` - Saves single block configuration (ie move block to a region)
+* ``drush block-disable <theme> <module> <delta>`` - Quickly disable a single block
+* ``drush block-show <theme> <module> <delta>`` - Show the configuration options for one or more blocks
+
 
 # Credits
 
