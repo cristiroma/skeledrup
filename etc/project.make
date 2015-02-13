@@ -31,7 +31,6 @@ projects[ctools][subdir] = contrib
 ; projects[uuid][subdir] = contrib
 ; projects[variable][subdir] = contrib
 projects[views][subdir] = contrib
-; projects[wysiwyg][subdir] = contrib
 
 ; Multilingual
 ; projects[i18n][subdir] = contrib
