@@ -7,6 +7,19 @@ global $project_config;
 define('PROJECT_ROOT', realpath(dirname(__FILE__) . '/..'));
 $project_config = sk_setup_aliases();
 
+/**
+ * @return mixed
+ */
+function sk_get_config($profile = 'local') {
+  global $project_config;
+  $ret = array();
+  if (!empty($project_config['aliases'][$profile])
+      && is_array($project_config['aliases'][$profile])) {
+    $ret = $project_config['aliases'][$profile];
+  }
+  return $ret;
+}
+
 
 function sk_setup_aliases() {
   $ret = array();
