@@ -4,71 +4,12 @@
 
 ## Virtual host configuration
 
-```
-    # Disable .htaccess in sites/default/files! Deny arbitrary script execution in subdirectories hack.
-    # Hackers create a subdir/.htaccess with "php_engine on" and can still execute arbitrary code!
-    <Directory /absolute/path/to/docroot/sites/default/files>
-        AllowOverride None
-        # Turn off all options we don't need.
-        Options None
-        Options +FollowSymLinks
-
-        # Set the catch-all handler to prevent scripts from being executed.
-        SetHandler Drupal_Security_Do_Not_Remove_See_SA_2006_006
-        <Files *>
-          # Override the handler again if we're run later in the evaluation list.
-          SetHandler Drupal_Security_Do_Not_Remove_See_SA_2013_003
-        </Files>
-
-        # If we know how to do it safely, disable the PHP engine entirely.
-        <IfModule mod_php5.c>
-          php_flag engine off
-        </IfModule>
-    </Directory>
-
-    # Disable .htaccess in Apache temp directory for this intance to prevent arbitrary code execution in subdirectories!
-    <Directory /absolute/path/to/private>
-        AllowOverride None
-        Deny from all
-        # Turn off all options we don't need.
-        Options None
-        Options +FollowSymLinks
-        # Set the catch-all handler to prevent scripts from being executed.
-        SetHandler Drupal_Security_Do_Not_Remove_See_SA_2006_006
-        <Files *>
-            # Override the handler again if we're run later in the evaluation list.
-            SetHandler Drupal_Security_Do_Not_Remove_See_SA_2013_003
-        </Files>
-        # If we know how to do it safely, disable the PHP engine entirely.
-        <IfModule mod_php5.c>
-            php_flag engine off
-        </IfModule>
-   </Directory>
-
-    # Disable .htaccess in Apache temp directory for this intance to prevent arbitrary code execution in subdirectories!
-    <Directory /absolute/path/to/temp>
-        AllowOverride None
-        Deny from all
-        # Turn off all options we don't need.
-        Options None
-        Options +FollowSymLinks
-        # Set the catch-all handler to prevent scripts from being executed.
-        SetHandler Drupal_Security_Do_Not_Remove_See_SA_2006_006
-        <Files *>
-            # Override the handler again if we're run later in the evaluation list.
-            SetHandler Drupal_Security_Do_Not_Remove_See_SA_2013_003
-        </Files>
-        # If we know how to do it safely, disable the PHP engine entirely.
-        <IfModule mod_php5.c>
-            php_flag engine off
-        </IfModule>
-   </Directory>
-```
+Please see [apache-example.conf](../etc/apache-example.conf) on how to configure correctly the security of the VH. 
 
 
 ## docroot/
 
-This directory must be read-only to apache (and all files inside except *sites/default/files*)!
+All files in this directory (except those in *docroot/sites/default/files*) must be read-only to Apache process
 
 ```
 drwxr-x---. php apache unconfined_u:object_r:httpd_sys_content_t:s0 .
@@ -95,12 +36,7 @@ drwxr-x---. php apache unconfined_u:object_r:httpd_sys_content_t:s0 themes
 
 ### docroot/sites/default/files
 
-(Optional) Use git to track changes in the files directory to easily find out suspect files (since last commit)
-
-  * git init . && git add . && git commit -m "Initial revision"
-  * .git directory should be owned by root account in order to prevent commits to the repo by apache user.
-
-Typical setup for files directory
+All files in this directory must be owned and have read-write permissions
 
 ```
 drwxrwx---. apache apache unconfined_u:object_r:httpd_sys_rw_content_t:s0 .
@@ -112,9 +48,24 @@ drwxrwx---. apache apache unconfined_u:object_r:httpd_sys_rw_content_t:s0 js
 drwxrwx---. apache apache unconfined_u:object_r:httpd_sys_rw_content_t:s0 styles
 ```
 
+(Optional) Use git to track changes in the files directory to easily find out suspect files (since last commit)
+
+  * git init . && git add . && git commit -m "Initial revision"
+  * .git directory should be owned by root account in order to prevent commits to the repo by apache user.
+  * from time to time examine and commit new files
+  * This is recommended for small sites which have a moderate rate of changes in this directory
+
+
 ### temp/ files directory
 
-Typical permission configuration for temporary directory
+WARNING! Do not leave Drupal default /tmp.
+
+This must be set in Drupal as temp directory:
+
+* Configuration screen: admin/config/media/file-system
+* Drush command: drush vset file_temporary_path /absolute/path/to/project/temp)
+
+Typical permission configuration for this directory
 
 ```
 drwxrwx---. apache apache unconfined_u:object_r:httpd_sys_rw_content_t:s0 .
@@ -126,7 +77,14 @@ drwxrwx---. apache apache unconfined_u:object_r:httpd_sys_rw_content_t:s0 tempor
 
 ### private/ files directory
 
-Typical permission configuration for private files directory
+WARNING! Never store private files under sites/default/files!
+
+This is optional, but recommended. By default private storage is not configured. To set it:
+
+* Configuration screen: admin/config/media/file-system
+* Drush command: drush vset file_private_path /absolute/path/to/project/private
+
+Typical permission configuration for this directory:
 
 ```
 drwxrwx---. apache apache unconfined_u:object_r:httpd_sys_rw_content_t:s0 .
