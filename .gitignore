@@ -1,6 +1,7 @@
 # Sensitive information #
 #########################
 # Ignore configuration files that may contain sensitive information.
+docroot/
 docroot/sites/*/settings*.php
 etc/local.yml
 etc/apache.conf
