@@ -1,13 +1,13 @@
 # Sensitive information #
 #########################
 # Ignore configuration files that may contain sensitive information.
-docroot/
-docroot/sites/*/settings*.php
+www/
+www/sites/*/settings*.php
 etc/local.yml
 etc/apache.conf
 
 # Drupal specific
-docroot/sites/*/files
+www/sites/*/files
 
 # Other files
 *.log

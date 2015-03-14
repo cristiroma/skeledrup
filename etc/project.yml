@@ -4,7 +4,7 @@ aliases:
         # Put here the path to project.make or leave empty to use default Drupal's distribution
         makefile: etc/project.make
         uri: http://drupal.local.website:8080
-        root: /absolute/path/to/drupal/docroot
+        root: /absolute/path/to/drupal/www
         remote-host: localhost
         remote-user: account
 
@@ -71,7 +71,7 @@ aliases:
 
     dev:
         uri: http://drupal.dev.website:8080
-        root: /path/to/drupal/docroot
+        root: /path/to/drupal/www
         remote-host: drupal.dev.website
         remote-user: account
 

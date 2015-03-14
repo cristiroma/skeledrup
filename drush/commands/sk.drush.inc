@@ -52,11 +52,11 @@ function drush_sk_setup() {
   $makefile = !empty($local['makefile']) ? $local['makefile'] : '';
   if (!empty($makefile)) {
     $makefile = $makefile[0] == '/' ? $makefile : PROJECT_ROOT . '/' . $makefile;
-    drush_invoke_process('@self', 'make', array($makefile, 'docroot'));
+    drush_invoke_process('@self', 'make', array($makefile, 'www'));
   }
   else {
     // Run drush make to make the Drupal instance
-    drush_invoke_process('@self', 'dl', array('drupal', '--drupal-project-rename=docroot'));
+    drush_invoke_process('@self', 'dl', array('drupal', '--drupal-project-rename=www'));
   }
 }
 
@@ -67,10 +67,10 @@ function drush_sk_install() {
   if ($makefile) {
     $profile = 'standard';
     $src = PROJECT_ROOT . '/etc/profiles/' . $profile;
-    $dest = PROJECT_ROOT . '/docroot/profiles/standard';
+    $dest = PROJECT_ROOT . '/www/profiles/standard';
     if (is_dir($src)) {
       sk_rrmdir($dest);
-      sk_rcopy(PROJECT_ROOT . '/etc/profiles/' . $profile, PROJECT_ROOT . '/docroot/profiles/standard');
+      sk_rcopy(PROJECT_ROOT . '/etc/profiles/' . $profile, PROJECT_ROOT . '/www/profiles/standard');
     }
   }
   $local = $project_config['aliases']['local'];
@@ -163,16 +163,16 @@ function drush_sk_devify() {
 }
 
 function drush_sk_clean() {
-  $default = PROJECT_ROOT . '/docroot/sites/default';
+  $default = PROJECT_ROOT . '/www/sites/default';
   if (is_dir($default)) {
     $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($default));
     foreach ($iterator as $item) {
       chmod($item, 0777);
     }
   }
-  $docroot = PROJECT_ROOT . '/docroot';
-  if (is_dir($docroot)) {
-    sk_rrmdir($docroot);
+  $www = PROJECT_ROOT . '/www';
+  if (is_dir($www)) {
+    sk_rrmdir($www);
   }
 }
 
