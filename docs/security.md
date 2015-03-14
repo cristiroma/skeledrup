@@ -56,14 +56,14 @@ drwxrwx---. apache apache unconfined_u:object_r:httpd_sys_rw_content_t:s0 styles
   * This is recommended for small sites which have a moderate rate of changes in this directory
 
 
-### temp/ files directory
+### tmp/ files directory
 
 WARNING! Do not leave Drupal default /tmp.
 
-This must be set in Drupal as temp directory:
+This must be set in Drupal as tmp directory:
 
 * Configuration screen: admin/config/media/file-system
-* Drush command: drush vset file_temporary_path /absolute/path/to/project/temp)
+* Drush command: drush vset file_temporary_path /absolute/path/to/project/tmp)
 
 Typical permission configuration for this directory
 
