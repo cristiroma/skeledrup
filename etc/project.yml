@@ -113,5 +113,3 @@ aliases:
         command-specific:
             sql-sync:
                 simulate: 1
-            rsync:
-                simulate: 1
