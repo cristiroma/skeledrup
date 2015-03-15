@@ -31,24 +31,23 @@ dependencies[] = rdf
 ; dependencies[] = edw_extras
 
 ; Very common modules used in almost all projects
-; dependencies[] = ctools
-; dependencies[] = date
-; dependencies[] = entity
-; dependencies[] = entityreference
+dependencies[] = ctools
+dependencies[] = date
+dependencies[] = entity
+dependencies[] = entityreference
 ; dependencies[] = features
 ; dependencies[] = ftools
-; dependencies[] = wysiwyg
 ; dependencies[] = jquery_update
-; dependencies[] = libraries
-; dependencies[] = link
-; dependencies[] = pathauto
+dependencies[] = libraries
+dependencies[] = link
+dependencies[] = pathauto
 ; dependencies[] = strongarm
 ; dependencies[] = taxonomy_access_fix
-; dependencies[] = token
+dependencies[] = token
 ; dependencies[] = uuid
-; dependencies[] = variable
-; dependencies[] = views
-; dependencies[] = wysiwyg
+dependencies[] = variable
+dependencies[] = views
+dependencies[] = wysiwyg
 
 ; Multilingual
 ; dependencies[] = i18n
