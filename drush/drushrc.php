@@ -7,6 +7,21 @@ global $project_config;
 define('PROJECT_ROOT', realpath(dirname(__FILE__) . '/..'));
 $project_config = sk_setup_aliases();
 
+
+// Configuring site-specific commands
+$db = $project_config['aliases']['local']['db'];
+$db_url = sprintf('mysql://%s:%s@%s:%s/%s', $db['username'], $db['password'], $db['host'], $db['port'], $db['database']);
+$admin = $project_config['aliases']['local']['users']['admin'];
+$command_specific['site-install'] = array(
+  'db-url' => $db_url,
+  'account-mail' => $admin['email'], 'account-name' => $admin['username'], 'account-pass' => $admin['password'],
+  'db-su' => $db['root_username'], 'db-su-pw' => $db['root_password']
+);
+
+// Always show release notes when running pm-update or pm-updatecode
+# $command_specific['pm-update'] = array('notes' => TRUE);
+# $command_specific['pm-updatecode'] = array('notes' => TRUE);
+
 /**
  * @return mixed
  */
