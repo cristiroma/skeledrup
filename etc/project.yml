@@ -18,6 +18,7 @@ projects:
   # EdW modules
   edw_extras:
     subdir: edw
+    type: module
     location: http://fserver.eaudeweb.ro/fserver
 
   views:
