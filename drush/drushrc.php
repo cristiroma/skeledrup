@@ -23,7 +23,7 @@ function sk_get_config($profile = 'local') {
 
 function sk_setup_aliases() {
   $ret = array();
-  $config_yml = realpath(PROJECT_ROOT . '/etc/project.yml');
+  $config_yml = realpath(PROJECT_ROOT . '/etc/config.yml');
   if (file_exists($config_yml)) {
     $config = ParserYaml::parse(file_get_contents($config_yml));
     $ret = $config;

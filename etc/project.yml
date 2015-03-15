@@ -1,85 +1,22 @@
-# Configure drush site aliases, "local" is mandatory and used to project-make & project-install (contains all settings)
-aliases:
-    local:
-        # Put here the path to project.make or leave empty to use default Drupal's distribution
-        makefile: etc/project.make
-        uri: http://drupal.local.website:8080
-        root: /absolute/path/to/drupal/www
-        remote-host: localhost
-        remote-user: account
+# Makefile for this project
+# The Drush Make API version. This should always be 2.
+api: 2
+# The version of Drupal of this profile. Leave as '7.x' here and define the the exact version in projects below
+core: 7.x
 
-        # Database connection options
-        db:
-            host: localhost
-            username : root
-            password : root
-            port: 3306
-            database : skeledrup
-            root_username: root
-            root_password: root
+defaults:
+  projects:
+    subdir: "contrib"
 
-        # Create these users during installation
-        users:
-            # override: true # if TRUE in local.yml will override values defined here
-            admin: # admin is mandatory, DO NOT DELETE!
-                name: admin # Customise "admin" username - defaults to admin
-                pass: password
-                mail: cristian.romanescu@eaudeweb.ro
-#            test:
-#                name: john
-#                pass: secret
-#                mail: john.doe@mailinator.com
-#                status: 1
-#                timezone: Europe/Bucharest
+projects:
+  drupal:
+    type: "core"
+    version: "7.34"
+  ctools:
 
-        variables:
-            # override              : true # if TRUE in local.yml will override values defined here
-            # Mandatory variables
-            site_mail               : site.mail@mailinator.com
-            site_name               : www.romanescu.ro
-            site_frontpage          : node
-            file_public_path        : sites/default/files
-            file_default_scheme     : public
-            user_register           : 0 # 0-USER_REGISTER_ADMINISTRATORS_ONLY/1-USER_REGISTER_VISITORS/2-USER_REGISTER_VISITORS_ADMINISTRATIVE_APPROVAL
-            site_default_country    : RO
-            date_default_timezone   : UTC+2
-            admin_theme             : seven
-            # Optional variables
-            site_slogan             : There's a lot to be learn. Open a book today!
-            default_nodes_main      : 10
-            site_403                :
-            site_404                :
-            # File related settings
-            file_private_path       :
-            file_temporary_path     : /tmp
-            user_cancel_method      :
-            user_pictures           : 0
-            theme_default           : blogger_theme
-            date_first_day          : 1
-            configurable_timezones  : 0
-            user_default_timezone   : 0
-            jquery_update_compression_type      : min
-            jquery_update_jquery_admin_version  :
-            jquery_update_jquery_cdn            : none
-            jquery_update_jquery_version        : 1.9
+  # EdW modules
+  edw_extras:
+    subdir: edw
+    location: http://fserver.eaudeweb.ro/fserver
 
-        devify:
-            disable-modules: [update]
-            enable-modules:  [devel]
-            delete-variables: []
-            reset-variables: []
-
-    dev:
-        uri: http://drupal.dev.website:8080
-        root: /path/to/drupal/www
-        remote-host: drupal.dev.website
-        remote-user: account
-
-    prod:
-        uri: http://www.romanescu.ro
-        root: /var/www/html/romanescu/www
-        remote-host: www.romanescu.ro
-        remote-user: php
-        command-specific:
-            sql-sync:
-                simulate: 1
+  views:

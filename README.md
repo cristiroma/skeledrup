@@ -7,9 +7,9 @@ This repository is useful for you if you want to a start a new Drupal project. P
 Suppose you want to bootstrap your new project based on this skelet. So, what should you do?
 
 1. Use _Download ZIP_ Github feature from right menu and unpack into a new directory. 
-2. Edit [etc/project.yml](etc/project.yml) to configure project global variables (used by everyone in the team)
+2. Edit [etc/config.yml](etc/config.yml) to configure project global variables (used by everyone in the team)
 3. Instruct each team member to override these global settings by creating a local *etc/local.yml* file
-4. Customize [etc/project.make](etc/project.make) and [etc/profiles/standard/standard.info](etc/profiles/standard/standard.info) files to enable the modules you want to have for the new project
+4. Customize [etc/project.yml](etc/project.yml) and [etc/profiles/standard/standard.info](etc/profiles/standard/standard.info) files to enable the modules you want to have for the new project
 5. Run ``drush sk-setup`` to download the Drupal core & modules (wrapper around ``drush make``)
 6. Run ``drush sk-install`` to create the database and install the Drupal instance on your computer (wrapper around ``drush site-install``)
 
