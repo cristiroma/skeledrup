@@ -55,6 +55,14 @@ Please read [tests/readme.md](tests/readme.md) for more information on writing t
 * You override drush command options' configuring the $command_specific variable in [drush/drushrc.php](drush/drushrc.php). 
 There are already is an example that overrides the ```drush site-install``` options.
 
+## How do I ...
+
+Q: ... add a new module into the project?
+
+A: For a new project add the module to [etc/profiles/standard/standard.info](etc/profiles/standard/standard.info),
+to [etc/project.yml](etc/project.yml), for existing projects also to ```www/profiles/standard/standard.info```. Then run ```drush sk-build```.
+
+
 # Credits
 
 Credit to this project goes to:
