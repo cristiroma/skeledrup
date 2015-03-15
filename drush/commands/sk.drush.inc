@@ -14,9 +14,9 @@ function sk_drush_command() {
       'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_ROOT,
       'description' => 'Install a clean project instance from scratch',
     ),
-    'sk-update' => array(
+    'sk-build' => array(
       'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
-      'description' => 'Update instance: database updates, revert features, clear caches',
+      'description' => 'Rebuild the instance: apply database updates and force-revert the features',
     ),
     'sk-reset-variables' => array(
       'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
@@ -91,7 +91,7 @@ function drush_sk_install() {
   drush_invoke_process('@self', 'site-install', array(), $command_specific);
 }
 
-function drush_sk_update() {
+function drush_sk_build() {
   drush_invoke('updatedb');
   if (module_exists('features')) {
     drush_invoke_process('@self', 'features-revert-all', array(), array(
@@ -100,7 +100,7 @@ function drush_sk_update() {
     ));
   }
   drush_invoke('cc', array('type' => 'all'));
-  drush_log(dt('Update command finished'), 'success');
+  drush_log(dt('Rebuild process finished'), 'success');
 }
 
 function drush_sk_devify() {

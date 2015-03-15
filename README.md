@@ -36,7 +36,7 @@ Please read [tests/readme.md](tests/readme.md) for more information on writing t
 * ``drush sk`` - overview of these commands
 * ``drush sk-setup`` - validate configuration and prepare the Drupal instance
 * ``drush sk-install`` - install a clean site
-* ``drush sk-update`` - update an existing site by running database updates, revert the features etc.
+* ``drush sk-build`` - rebuild the existing site by running database updates and force-revert the features
 * ``drush sk-devify`` - configure instance with development environment customisations
 * ``drush sk-reset-variables`` - Reset the instance variables to their values from config Yaml file
 * ``drush sk-clean`` - Remove www/ folder
