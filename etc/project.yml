@@ -12,62 +12,63 @@ projects:
   drupal:
     type: "core"
     version: "7.34"
+#
+#  ctools:
+#    subdir: contrib
+#
+#  views:
+#    subdir: contrib
+#
+#  date:
+#    subdir: contrib
+#
+#  entity:
+#    subdir: contrib
+#
+#  entityreference:
+#    subdir: contrib
+#
+#  features:
+#    subdir: contrib
+#
+#  ftools:
+#    subdir: contrib
+#
+#  wysiwyg:
+#    subdir: contrib
+#
+#  jquery_update:
+#    subdir: contrib
+#
+#  libraries:
+#    subdir: contrib
+#
+#  link:
+#    subdir: contrib
+#
+#  pathauto:
+#    subdir: contrib
+#
+#  strongarm:
+#    subdir: contrib
+#
+#  taxonomy_access_fix:
+#    subdir: contrib
+#
+#  token:
+#    subdir: contrib
+#
+#  uuid:
+#    subdir: contrib
+#
+#  variable:
+#    subdir: contrib
+#
+#  devel:
+#    subdir: contrib
 
-  ctools:
-    subdir: contrib
-
-  views:
-    subdir: contrib
-
-  date:
-    subdir: contrib
-
-  entity:
-    subdir: contrib
-
-  entityreference:
-    subdir: contrib
-
-  features:
-    subdir: contrib
-  ftools:
-    subdir: contrib
-
-  wysiwyg:
-    subdir: contrib
-
-  jquery_update:
-    subdir: contrib
-
-  libraries:
-    subdir: contrib
-
-  link:
-    subdir: contrib
-
-  pathauto:
-    subdir: contrib
-
-  strongarm:
-    subdir: contrib
-
-  taxonomy_access_fix:
-    subdir: contrib
-
-  token:
-    subdir: contrib
-
-  uuid:
-    subdir: contrib
-
-  variable:
-    subdir: contrib
-
-  devel:
-    subdir: contrib
-
-  # EdW modules
-  edw_extras:
-    subdir: edw
-    type: module
-    location: http://fserver.eaudeweb.ro/fserver
+#  EdW modules
+#  edw_extras:
+#    subdir: edw
+#    type: module
+#    location: http://fserver.eaudeweb.ro/fserver
