@@ -50,6 +50,11 @@ Please read [tests/readme.md](tests/readme.md) for more information on writing t
 ## Solr related commands
 * ``drush solr-config-reset [solr-machine1,solr-machine2]`` - Show the configuration options for one or more blocks
 
+## Customize drush built-in commands
+
+* You override drush command options' configuring the $command_specific variable in [drush/drushrc.php](drush/drushrc.php). 
+There are already is an example that overrides the ```drush site-install``` options.
+
 # Credits
 
 Credit to this project goes to:
