@@ -1,0 +1,24 @@
+# Makefile for this project
+# The Drush Make API version. This should always be 2.
+api: 2
+# The version of Drupal of this profile. Leave as '7.x' here and define the the exact version in projects below
+core: 7.x
+
+defaults:
+  projects:
+    subdir: "contrib"
+
+projects:
+  drupal:
+    type: "core"
+    version: "7.34"
+
+  ctools:
+
+  # EdW modules
+  edw_extras:
+    subdir: edw
+    location: http://fserver.eaudeweb.ro/fserver
+
+  views:
+
