@@ -5,7 +5,7 @@ var cfg_project, cfg_local = null;
 exports.projectGetSetting = function(variable) {
   var ret = null;
   if (cfg_project == null) {
-    cfg_project = yaml.safeLoad(fs.read('../etc/project.yml'));
+    cfg_project = yaml.safeLoad(fs.read('../etc/config.yml'));
   }
   if (fs.exists('../etc/local.yml')) {
     cfg_local = yaml.safeLoad(fs.read('../etc/local.yml'));
