@@ -47,6 +47,7 @@ dependencies[] = token
 ; dependencies[] = uuid
 dependencies[] = variable
 dependencies[] = views
+dependencies[] = views_ui
 dependencies[] = wysiwyg
 
 ; Multilingual

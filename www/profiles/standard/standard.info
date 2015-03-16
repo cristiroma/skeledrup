@@ -40,6 +40,7 @@ dependencies[] = token
 ; dependencies[] = uuid
 dependencies[] = variable
 dependencies[] = views
+dependencies[] = views_ui
 dependencies[] = wysiwyg
 
 ; Information added by Drupal.org packaging script on 2014-11-19
