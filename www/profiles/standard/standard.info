@@ -24,27 +24,8 @@ dependencies[] = field_ui
 dependencies[] = file
 dependencies[] = rdf
 
-dependencies[] = ctools
-dependencies[] = date
-dependencies[] = entity
-dependencies[] = entityreference
-; dependencies[] = features
-; dependencies[] = ftools
-; dependencies[] = jquery_update
-dependencies[] = libraries
-dependencies[] = link
-dependencies[] = pathauto
-; dependencies[] = strongarm
-; dependencies[] = taxonomy_access_fix
-dependencies[] = token
-; dependencies[] = uuid
-dependencies[] = variable
-dependencies[] = views
-dependencies[] = views_ui
-dependencies[] = wysiwyg
-
-; Information added by Drupal.org packaging script on 2014-11-19
-version = "7.34"
+; Information added by Drupal.org packaging script on 2015-06-17
+version = "7.38"
 project = "drupal"
-datestamp = "1416429488"
+datestamp = "1434567286"
 
