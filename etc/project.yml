@@ -22,6 +22,8 @@ projects:
     subdir: contrib
   entityreference:
     subdir: contrib
+  jquery_update:
+    subdir: contrib
 
 #  features:
 #    subdir: contrib
