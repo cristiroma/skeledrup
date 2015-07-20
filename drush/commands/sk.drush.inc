@@ -25,10 +25,6 @@ function sk_drush_command() {
         'verbose' => 'Show the value of each variable set'
       )
     ),
-    'sk-devify' => array(
-      'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
-      'description' => 'Use when cloning production enviroment to local devel machine. Disable production configuration & enable development specific items',
-    ),
     'sk-clean' => array(
       'bootstrap' => DRUSH_BOOTSTRAP_NONE,
       'description' => 'Deletes all files on disk',
@@ -101,65 +97,6 @@ function drush_sk_update() {
   }
   drush_invoke('cc', array('type' => 'all'));
   drush_log(dt('Update command finished'), 'success');
-}
-
-function drush_sk_devify() {
-  global $project_config;
-
-  $local = $project_config['aliases']['local'];
-  $config = $local['devify'];
-
-  $modules = array_unique(array_merge($config['disable-modules'], array('update')));
-  module_disable($modules);
-
-  $modules = array_unique(array_merge($config['enable-modules'], array()));
-  module_disable($modules);
-
-  $variables = array_unique(array_merge($config['delete-variables'], array('googleanalytics_account')));
-  foreach ($variables as $variable) {
-    variable_del($variable);
-  }
-
-  $variables = array_merge(
-    $config['reset-variables'], array(
-      'preprocess_css' => 0,
-      'preprocess_js' => 0,
-      'cache' => 0,
-      'page_compression' => 0,
-    )
-  );
-  foreach ($variables as $key => $value) {
-    variable_set($key, $value);
-  }
-
-  // Devify Solr servers
-  if (!empty($local['solr-servers']) && module_exists('search_api_solr')) {
-    foreach ($local['solr-servers'] as $machine_name => $cfg) {
-      if ($server = search_api_server_load($machine_name)) {
-        $server->name = $cfg['name'];
-        $server->enabled = $cfg['enabled'];
-        $server->description = $cfg['description'];
-        $server->options = array(
-          'scheme' => $cfg['scheme'],
-          'host' => $cfg['host'],
-          'port' => $cfg['port'],
-          'path' => $cfg['path'],
-          'http' => array(
-            'http_user' => $cfg['http_user'],
-            'http_pass' => $cfg['http_pass'],
-          ),
-          'excerpt' => $cfg['excerpt'],
-          'retrieve_data' => $cfg['retrieve_data'],
-          'highlight_data' => $cfg['highlight_data'],
-          'skip_schema_check' => $cfg['skip_schema_check'],
-          'solr_version' => $cfg['solr_version'],
-          'http_method' => $cfg['http_method'],
-        );
-        $server->save();
-      }
-    }
-  }
-  drush_log(dt('Devified!'), 'success');
 }
 
 function drush_sk_clean() {
