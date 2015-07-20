@@ -31,10 +31,9 @@ projects:
 #
   wysiwyg:
     subdir: contrib
-#
-#  jquery_update:
-#    subdir: contrib
-#
+  jquery_update:
+    subdir: contrib
+
   libraries:
     subdir: contrib
 #
