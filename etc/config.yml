@@ -42,7 +42,7 @@ aliases:
             file_default_scheme     : public
             user_register           : 0 # 0-USER_REGISTER_ADMINISTRATORS_ONLY/1-USER_REGISTER_VISITORS/2-USER_REGISTER_VISITORS_ADMINISTRATIVE_APPROVAL
             site_default_country    : RO
-            date_default_timezone   : UTC+2
+            date_default_timezone   : Europe/Bucharest
             admin_theme             : seven
             # Optional variables
             site_slogan             : There's a lot to be learn. Open a book today!
