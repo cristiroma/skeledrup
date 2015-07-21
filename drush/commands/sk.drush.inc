@@ -14,13 +14,6 @@ function sk_drush_command() {
       'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_ROOT,
       'description' => 'Install a clean project instance from scratch',
     ),
-    'sk-reset-variables' => array(
-      'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
-      'description' => 'Reset variables with those from the project configuration file',
-      'options' => array(
-        'verbose' => 'Show the value of each variable set'
-      )
-    ),
     'sk-clean' => array(
       'bootstrap' => DRUSH_BOOTSTRAP_NONE,
       'description' => 'Deletes all files on disk',
@@ -94,16 +87,5 @@ function drush_sk_clean() {
   $www = PROJECT_ROOT . '/www';
   if (is_dir($www)) {
     sk_rrmdir($www);
-  }
-}
-
-function drush_sk_reset_variables() {
-  global $project_config;
-  $variables = $project_config['aliases']['local']['variables'];
-  foreach ($variables as $k => $v) {
-    if (drush_get_option('verbose', FALSE)) {
-      drush_log(sprintf('Setting %s = %s', $k, $v));
-    }
-    variable_set($k, $v);
   }
 }
