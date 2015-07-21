@@ -6,6 +6,10 @@ function devify_drush_command() {
       'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
       'description' => 'Disable production configuration & enable development specific settings',
     ),
+    'sql-sync-production' => array(
+      'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
+      'description' => 'Disable production configuration & enable development specific settings',
+    ),
   );
 }
 
@@ -65,4 +69,10 @@ function drush_devify() {
     }
   }
   drush_log(dt('Instance devified!'), 'success');
+}
+
+function drush_devify_sql_sync_production() {
+  drush_invoke('sql-sync', array('source' => '@prod', 'target' => '@self'));
+  drush_invoke('devify');
+  drush_invoke('variables-reset');
 }
