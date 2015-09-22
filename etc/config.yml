@@ -4,7 +4,7 @@ aliases:
         # Put here the path to project.yml or leave empty to use default Drupal's distribution
         makefile: etc/project.yml
         uri: http://drupal.local.website:8080
-        root: /absolute/path/to/drupal/www
+        root: /absolute/path/to/drupal/docroot
         remote-host: localhost
         remote-user: account
 
@@ -73,13 +73,13 @@ aliases:
                 page_compression: 0
     dev:
         uri: http://drupal.dev.website:8080
-        root: /path/to/drupal/www
+        root: /path/to/drupal/docroot
         remote-host: drupal.dev.website
         remote-user: account
 
     prod:
-        uri: http://www.romanescu.ro
-        root: /var/www/html/romanescu/www
+        uri: http://docroot.romanescu.ro
+        root: /var/www/html/romanescu/docroot
         remote-host: www.romanescu.ro
         remote-user: php
         command-specific:

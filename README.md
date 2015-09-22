@@ -39,7 +39,7 @@ Please read [tests/readme.md](tests/readme.md) for more information on writing t
 * ``drush sk-build`` - rebuild the existing site by running database updates and force-revert the features
 * ``drush sk-devify`` - configure instance with development environment customisations
 * ``drush sk-reset-variables`` - Reset the instance variables to their values from config Yaml file
-* ``drush sk-clean`` - Remove www/ folder
+* ``drush sk-clean`` - Remove docroot/ folder
 
 ## Block related commands
 
@@ -60,7 +60,7 @@ There are already is an example that overrides the ```drush site-install``` opti
 Q: ... add a new module into the project?
 
 A: For a new project add the module to [etc/profiles/standard/standard.info](etc/profiles/standard/standard.info),
-to [etc/project.yml](etc/project.yml), for existing projects also to ```www/profiles/standard/standard.info```. Then run ```drush sk-build```.
+to [etc/project.yml](etc/project.yml), for existing projects also to ```docroot/profiles/standard/standard.info```. Then run ```drush sk-build```.
 
 
 # Credits
