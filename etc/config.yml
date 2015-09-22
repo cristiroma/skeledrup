@@ -1,10 +1,10 @@
 # Configure drush site aliases, "local" is mandatory and used to project-make & project-install (contains all settings)
 aliases:
-    local:
+    self:
         # Put here the path to project.yml or leave empty to use default Drupal's distribution
         makefile: etc/project.yml
         uri: http://drupal.local.website:8080
-        root: /absolute/path/to/drupal/www
+        root: /absolute/path/to/drupal/docroot
         remote-host: localhost
         remote-user: account
 
@@ -95,19 +95,19 @@ aliases:
 
     dev:
         uri: http://drupal.dev.website:8080
-        root: /path/to/drupal/www
+        root: /path/to/drupal/docroot
         remote-host: drupal.dev.website
         remote-user: account
 
     staging:
         uri: http://drupal.staging.website:8080
-        root: /path/to/drupal/www
+        root: /path/to/drupal/docroot
         remote-host: drupal.staging.website
         remote-user: account
 
     prod:
         uri: http://drupal.prod.website:8080
-        root: /path/to/drupal/www
+        root: /path/to/drupal/docroot
         remote-host: drupal.prod.website
         remote-user: account
         command-specific:

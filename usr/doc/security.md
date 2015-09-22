@@ -7,9 +7,9 @@
 Please see [apache-example.conf](../etc/apache-example.conf) on how to configure correctly the security of the VH. 
 
 
-## www/
+## docroot/
 
-All files in this directory (except those in www/sites/default/files*) must be read-only to Apache process
+All files in this directory (except those in docroot/sites/default/files*) must be read-only to Apache process
 
 ```
 drwxr-x---. php apache unconfined_u:object_r:httpd_sys_content_t:s0 .
@@ -34,7 +34,7 @@ drwxr-x---. php apache unconfined_u:object_r:httpd_sys_content_t:s0 themes
 
 # Filesystem security configuration
 
-### www/sites/default/files
+### docroot/sites/default/files
 
 All files in this directory must be owned and have read-write permissions
 
