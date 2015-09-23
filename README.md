@@ -4,27 +4,20 @@ This repository is useful for you if you want to a start a new Drupal project. P
 
 # How to use it
 
-Suppose you want to bootstrap your new project based on this skelet. So, what should you do?
+Suppose you want to bootstrap your new project based on this skeleton. So, what should you do?
 
-1. Configure drush: copy etc/drushrc.php to your ~/.drush/ directory 
-2. Use _Download ZIP_ Github feature from right menu and unpack into a new directory. 
+1. Use _Download ZIP_ Github feature from right menu and unpack this release into a new directory. 
+2. _(Optional)_ Configure drush: copy etc/drushrc.php to your ~/.drush/ directory 
 3. Edit [etc/config.yml](etc/config.yml) to configure project global variables (used by everyone in the team)
 4. Instruct each team member to override these global settings by creating a local *etc/local.yml* file
 5. Customize [etc/project.yml](etc/project.yml) and [etc/profiles/standard/standard.info](etc/profiles/standard/standard.info) files to enable the modules you want to have for the new project
-6. Run ``drush sk-setup`` to download the Drupal core & modules (wrapper around ``drush make``)
-7. Run ``drush sk-install`` to create the database and install the Drupal instance on your computer (wrapper around ``drush site-install``)
+6. Run ``drush make etc/project.yml docroot`` to download the Drupal core & modules
+7. Run ``drush site-install`` to create the database and install the Drupal instance on your computer
 
 Now that you have a new project in place, you want to create a new repo from it and share with the team.
 
 7. Use ``git init .`` to create a new repo for your project.
 8. Commit & push the changes
-9. To further receive bug fixes and updates from this project you can add a new origin: ``git remote add skeledrup https://github.com/cristiroma/skeledrup``
-10. Use ``git fetch`` to download updates
-11. Use ``git merge skeledrup/master`` to include the updates in your working tree
-
-Repeat steps 10 and 11 each time you feel you need to bringing updates to your project. Happy coding :)
-
-12. (Optional) Instead of fixing bugs of this project in your own repo, fork this and contribute back using pull requests - then use bring them to your repo ;)
 
 # Writing tests
 
@@ -34,22 +27,8 @@ Please read [tests/readme.md](tests/readme.md) for more information on writing t
 
 ## Project related
 
-* ``drush sk`` - overview of these commands
-* ``drush sk-setup`` - validate configuration and prepare the Drupal instance
-* ``drush sk-install`` - install a clean site
-* ``drush sk-build`` - rebuild the existing site by running database updates and force-revert the features
-* ``drush sk-devify`` - configure instance with development environment customisations
-* ``drush sk-reset-variables`` - Reset the instance variables to their values from config Yaml file
-* ``drush sk-clean`` - Remove docroot/ folder
-
-## Block related commands
-
-* ``drush block-configure <theme> <module> <delta> [region] [weight]`` - Saves single block configuration (ie move block to a region)
-* ``drush block-disable <theme> <module> <delta>`` - Quickly disable a single block
-* ``drush block-show <theme> <module> <delta>`` - Show the configuration options for one or more blocks
-
 ## Solr related commands
-* ``drush solr-config-reset [solr-machine1,solr-machine2]`` - Show the configuration options for one or more blocks
+* ``drush reset-solr [solr-machine1,solr-machine2]`` - Show the configuration options for one or more blocks
 
 ## Customize drush built-in commands
 
@@ -61,7 +40,7 @@ There are already is an example that overrides the ```drush site-install``` opti
 Q: ... add a new module into the project?
 
 A: For a new project add the module to [etc/profiles/standard/standard.info](etc/profiles/standard/standard.info),
-to [etc/project.yml](etc/project.yml), for existing projects also to ```docroot/profiles/standard/standard.info```. Then run ```drush sk-build```.
+to [etc/project.yml](etc/project.yml), for existing projects also to ```docroot/profiles/standard/standard.info```. Then run ```drush build```.
 
 
 # Credits

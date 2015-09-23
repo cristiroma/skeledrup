@@ -6,9 +6,6 @@ aliases:
         uri: http://drupal.local.website:8080
         root: /absolute/path/to/drupal/docroot
 
-        path-aliases:
-            %root: /absolute/path/to/drupal/docroot
-
         # Database connection options
         db:
             host: localhost
@@ -19,13 +16,13 @@ aliases:
             root_username: root
             root_password: root
 
+        admin: # admin is mandatory, DO NOT DELETE!
+            name: admin # Customise "admin" username - defaults to admin
+            pass: password
+            mail: cristian.romanescu@eaudeweb.ro
+
         # Create these users during installation
         users:
-            # override: true # if TRUE in local.yml will override values defined here
-            admin: # admin is mandatory, DO NOT DELETE!
-                name: admin # Customise "admin" username - defaults to admin
-                pass: password
-                mail: cristian.romanescu@eaudeweb.ro
 #            test:
 #                name: john
 #                pass: secret

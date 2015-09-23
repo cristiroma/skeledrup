@@ -2,7 +2,7 @@
 
 function variables_drush_command() {
   return array(
-    'variables-reset' => array(
+    'reset-variables' => array(
       'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
       'description' => 'Reset variables with those from the project configuration file',
       'options' => array(
@@ -12,11 +12,13 @@ function variables_drush_command() {
   );
 }
 
-function drush_variables_reset() {
+function drush_variables_reset_variables() {
   global $project_config;
-  $variables = $project_config['aliases']['local']['variables'];
+  $variables = $project_config['aliases']['self']['variables'];
   foreach ($variables as $k => $v) {
-    drush_log("Setting variable $k: $v", 'status');
+    if (drush_get_option('verbose', FALSE)) {
+      drush_log(sprintf('Setting %s = %s', $k, $v));
+    }
     variable_set($k, $v);
   }
 }

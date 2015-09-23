@@ -9,14 +9,19 @@ define('PROJECT_ROOT', realpath(dirname(__FILE__) . '/..'));
 $project_config = sk_setup_aliases();
 
 // Configuring commands based on config.yml
-$admin = $project_config['aliases']['self']['users']['admin'];
+$admin = $project_config['aliases']['self']['admin'];
 $db = $project_config['aliases']['self']['db'];
 $db_url = sprintf('mysql://%s:%s@%s:%s/%s', $db['username'], $db['password'], $db['host'], $db['port'], $db['database']);
 $options['command-specific']['site-install']['db-url'] = $db_url;
 $options['command-specific']['site-install']['account-mail'] = $admin['mail'];
 $options['command-specific']['site-install']['account-name'] = $admin['name'];
 $options['command-specific']['site-install']['account-pass'] = $admin['pass'];
-//
+
+$makefile = !empty($project_config['aliases']['self']['makefile']) ? $project_config['aliases']['self']['makefile'] : '';
+if (!empty($makefile)) {
+  $makefile = $makefile[0] == '/' ? $makefile : PROJECT_ROOT . '/' . $makefile;
+}
+
 
 // Always show release notes when running pm-update or pm-updatecode
 # $command_specific['pm-update'] = array('notes' => TRUE);
@@ -47,7 +52,7 @@ function sk_setup_aliases() {
   if (file_exists($local_yml)) {
     $local = ParserYaml::parse(file_get_contents($local_yml));
     $ret = array_replace_recursive($ret, $local);
-    // Check for overrides in specific positions of the arraay
+    // Check for overrides in specific positions of the array
     // @todo beautify to something ... recursive
     foreach(array('users', 'variables', 'solr-servers') as $key) {
       if (!empty($local['aliases']['self'][$key]['override'])) {
@@ -57,25 +62,6 @@ function sk_setup_aliases() {
     }
   }
   return $ret;
-}
-
-// Utility functions
-function sk_rrmdir($dir) {
-  if (is_dir($dir)) {
-    $objects = scandir($dir);
-    foreach ($objects as $object) {
-      if ($object != "." && $object != "..") {
-        if (filetype($dir."/".$object) == "dir") {
-          sk_rrmdir($dir."/".$object);
-        }
-        else {
-          unlink($dir."/".$object);
-        }
-      }
-    }
-    reset($objects);
-    rmdir($dir);
-  }
 }
 
 function sk_rcopy($src, $dst) {

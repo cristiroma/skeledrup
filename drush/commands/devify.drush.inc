@@ -17,15 +17,16 @@ function devify_drush_command() {
 function drush_devify() {
   global $project_config;
 
-  $local = $project_config['aliases']['local'];
-  $config = $local['devify'];
+  $self = $project_config['aliases']['self'];
+  $config = $self['devify'];
 
   $modules = array_unique(array_merge($config['disable-modules'], array('update')));
-  drush_log('Disabling modules: ' . implode(', ', $modules), 'status');
-  module_disable($modules);
+  foreach($modules as $module) {
+    module_disable($modules);
+    drush_log("Disabled $module ...", 'ok');
+  }
 
   $modules = array_unique(array_merge($config['enable-modules'], array()));
-  drush_log('Enabling modules: ' . implode(', ', $modules), 'status');
   module_disable($modules);
 
   $variables = array_unique(array_merge($config['delete-variables'], array('googleanalytics_account')));
@@ -34,16 +35,20 @@ function drush_devify() {
   }
 
   $variables = array_merge(
-    $config['reset-variables'], array()
+    $config['reset-variables'], array(
+      'preprocess_css' => 0,
+      'preprocess_js' => 0,
+      'cache' => 0,
+      'page_compression' => 0,
+    )
   );
   foreach ($variables as $key => $value) {
-    drush_log("Setting variable $key: $value", 'status');
     variable_set($key, $value);
   }
 
   // Devify Solr servers
-  if (!empty($local['solr-servers']) && module_exists('search_api_solr')) {
-    foreach ($local['solr-servers'] as $machine_name => $cfg) {
+  if (!empty($self['solr-servers']) && module_exists('search_api_solr')) {
+    foreach ($self['solr-servers'] as $machine_name => $cfg) {
       if ($server = search_api_server_load($machine_name)) {
         $server->name = $cfg['name'];
         $server->enabled = $cfg['enabled'];
@@ -68,7 +73,7 @@ function drush_devify() {
       }
     }
   }
-  drush_log(dt('Instance devified!'), 'success');
+  drush_log(dt('Devified!'), 'success');
 }
 
 function drush_devify_sql_sync_production() {

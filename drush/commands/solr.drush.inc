@@ -10,7 +10,7 @@
  */
 function solr_drush_command() {
   $items = array();
-  $items['solr-config-reset'] = array(
+  $items['reset-solr'] = array(
     'description' => 'Reset Solr servers configuration according to configuration file',
     'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
     'options' => array(
@@ -20,7 +20,7 @@ function solr_drush_command() {
   return $items;
 }
 
-function drush_solr_config_reset() {
+function drush_solr_reset_solr() {
   $cfg = sk_get_config();
   if(!empty($cfg['solr-servers']) && module_exists('search_api') && module_exists('search_api_solr')) {
     $filter = sk_parse_drush_get_option_array('servers');
