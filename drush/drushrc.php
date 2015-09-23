@@ -10,6 +10,9 @@ $project_config = sk_setup_aliases();
 
 // Configuring commands based on config.yml
 $admin = $project_config['aliases']['self']['users']['admin'];
+$db = $project_config['aliases']['self']['db'];
+$db_url = sprintf('mysql://%s:%s@%s:%s/%s', $db['username'], $db['password'], $db['host'], $db['port'], $db['database']);
+$options['command-specific']['site-install']['db-url'] = $db_url;
 $options['command-specific']['site-install']['account-mail'] = $admin['mail'];
 $options['command-specific']['site-install']['account-name'] = $admin['name'];
 $options['command-specific']['site-install']['account-pass'] = $admin['pass'];
