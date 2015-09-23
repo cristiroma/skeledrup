@@ -10,10 +10,6 @@ function sk_drush_command() {
       'bootstrap' => DRUSH_BOOTSTRAP_NONE,
       'description' => 'Validate configuration, download & install Drupal core - use to start a new project',
     ),
-    'sk-install' => array(
-      'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_ROOT,
-      'description' => 'Install a clean project instance from scratch',
-    ),
     'sk-build' => array(
       'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
       'description' => 'Rebuild the instance: apply database updates and force-revert the features',
@@ -48,7 +44,7 @@ function drush_sk() {
 
 function drush_sk_setup() {
   global $project_config;
-  $local = $project_config['aliases']['local'];
+  $local = $project_config['aliases']['self'];
   $makefile = !empty($local['makefile']) ? $local['makefile'] : '';
   if (!empty($makefile)) {
     $makefile = $makefile[0] == '/' ? $makefile : PROJECT_ROOT . '/' . $makefile;
@@ -63,7 +59,7 @@ function drush_sk_setup() {
 function drush_sk_install() {
   global $project_config;
 
-  $makefile = isset($project_config['aliases']['local']['makefile']) ? $project_config['aliases']['local']['makefile'] : FALSE;
+  $makefile = isset($project_config['aliases']['self']['makefile']) ? $project_config['aliases']['self']['makefile'] : FALSE;
   if ($makefile) {
     $profile = 'standard';
     $src = PROJECT_ROOT . '/etc/profiles/' . $profile;
@@ -73,11 +69,11 @@ function drush_sk_install() {
       sk_rcopy(PROJECT_ROOT . '/etc/profiles/' . $profile, PROJECT_ROOT . '/docroot/profiles/standard');
     }
   }
-  $local = $project_config['aliases']['local'];
+  $self = $project_config['aliases']['self'];
   // Run site-install
-  $db = $local['db'];
-  $admin = $local['users']['admin'];
-  $variables = $local['variables'];
+  $db = $self['db'];
+  $admin = $self['users']['admin'];
+  $variables = $self['variables'];
   $db_url = sprintf('mysql://%s:%s@%s:%s/%s', $db['username'], $db['password'], $db['host'], $db['port'], $db['database']);
   $command_specific = array(
     'db-url' => $db_url,
@@ -119,8 +115,8 @@ function drush_sk_build() {
 function drush_sk_devify() {
   global $project_config;
 
-  $local = $project_config['aliases']['local'];
-  $config = $local['devify'];
+  $self = $project_config['aliases']['self'];
+  $config = $self['devify'];
 
   $modules = array_unique(array_merge($config['disable-modules'], array('update')));
   module_disable($modules);
@@ -146,8 +142,8 @@ function drush_sk_devify() {
   }
 
   // Devify Solr servers
-  if (!empty($local['solr-servers']) && module_exists('search_api_solr')) {
-    foreach ($local['solr-servers'] as $machine_name => $cfg) {
+  if (!empty($self['solr-servers']) && module_exists('search_api_solr')) {
+    foreach ($self['solr-servers'] as $machine_name => $cfg) {
       if ($server = search_api_server_load($machine_name)) {
         $server->name = $cfg['name'];
         $server->enabled = $cfg['enabled'];
@@ -191,7 +187,7 @@ function drush_sk_clean() {
 
 function drush_sk_reset_variables() {
   global $project_config;
-  $variables = $project_config['aliases']['local']['variables'];
+  $variables = $project_config['aliases']['self']['variables'];
   foreach ($variables as $k => $v) {
     if (drush_get_option('verbose', FALSE)) {
       drush_log(sprintf('Setting %s = %s', $k, $v));
